@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Quicksand } from "next/font/google";
 import "./globals.css";
+import { quicksand } from "@/font";
 
-const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
