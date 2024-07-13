@@ -1,8 +1,4 @@
 
-export const metadata = {
- title: 'Miriam Shop',
- description: 'Miriam Shop',
-};
 
 
 export default function Home() {
