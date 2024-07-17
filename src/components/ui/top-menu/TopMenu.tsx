@@ -1,9 +1,15 @@
+'use client'
 import { quicksand } from '@/font'
+import { useUiStore } from '@/store'
+
 import Link from 'next/link'
 import React from 'react'
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5'
 
 export const TopMenu = () => {
+
+    const openSideMenu = useUiStore((state) => state.openSideMenu)
+
   return (
     <nav className='flex px-4 py-4 justify-between items-center w-full'>
 
@@ -56,6 +62,7 @@ export const TopMenu = () => {
 
             <button 
                 className='m-2 p-2 rounded-md transition-all hover:bg-gray-100'
+                onClick={openSideMenu}
             >
               Menu  
             </button>
