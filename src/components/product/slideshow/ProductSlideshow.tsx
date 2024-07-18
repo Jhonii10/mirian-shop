@@ -51,8 +51,8 @@ export const ProductSlideshow = ({images,title,className}:Props) => {
                 <Image
                     src={`/products/${image}`}
                     alt={title}
-                    width={900}
-                    height={900}
+                    width={1000}
+                    height={1000}
                     className='rounded-lg'
                 />
             </SwiperSlide>
@@ -84,8 +84,6 @@ export const ProductSlideshow = ({images,title,className}:Props) => {
             </SwiperSlide>
         ))
       }
-        
-        
       </Swiper>
       </div>
     </>
