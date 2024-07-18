@@ -1,4 +1,4 @@
-import { QuantitySelector, SizeSelector } from "@/components";
+import { ProductSlideshow, QuantitySelector, SizeSelector } from "@/components";
 import { quicksand } from "@/font";
 import { initialData } from "@/seed/seed";
 import Image from "next/image";
@@ -20,18 +20,17 @@ export default function ProductSlugPage({params}:Props) {
     if(!product){notFound()}
     
   return (
-    <div className="mt-5 mb-20 grid grid-cols-1 md:grid-cols-3 gap-3">
+    <div className="mt-5 mb-20 grid grid-cols-1 md:grid-cols-2 gap-3">
        
-       <div className="col-span-1 md:col-span-2 rounded border">
-         <Image
-            src={`/products/${product.images[0]}`}
-            alt={product.title}
-            width={400}
-            height={400}
+       <div className="col-span-1 md:col-span-1 rounded">
+         <ProductSlideshow 
+          title={product.title}
+          images={product.images}
+          className="hidden md:block"
          />
        </div>
 
-       <div className="col-span-1 px-5 p-4 border rounded">
+       <div className="col-span-1 px-5 p-4 *:rounded">
             <h1 className={`${quicksand.className} antialiased font-bold text-xl`}>{product.title}</h1>
             <p className="text-lg font-semibold">${product.price}</p>
             <SizeSelector
