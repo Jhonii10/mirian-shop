@@ -79,10 +79,10 @@ export default function CartPage() {
 
               <div>
                 <Link 
-                  href={'/checkout'}
+                  href={'/checkout/address'}
                   className="btn-primary flex justify-center mt-2 "
                   >
-                  Pagar
+                  Verificar
                 </Link>
               </div>
 
