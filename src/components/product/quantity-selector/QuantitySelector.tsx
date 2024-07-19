@@ -23,7 +23,7 @@ export const QuantitySelector = ({quantity}:Props) => {
             {<IoRemoveCircleOutline size={30} />}
         </button>
         
-        <span className="w-20 mx-3 px-5 bg-zinc-200 text-center rounded">
+        <span className="w-12 md:w-20 mx-3 px-5 bg-zinc-300 text-center rounded">
             {count}
         </span>
 
