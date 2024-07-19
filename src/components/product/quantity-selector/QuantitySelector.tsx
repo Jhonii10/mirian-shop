@@ -16,7 +16,7 @@ export const QuantitySelector = ({quantity}:Props) => {
     }
 
   return (
-    <div className="flex">
+    <div className="flex items-center">
         <button
             onClick={()=>onQuantityChanged(-1)}
         >
