@@ -56,6 +56,7 @@ export const Sidebar = () => {
                 <Link 
                     href={'/'}
                     className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
+                    onClick={closeSideMenu}
                 >
                     <IoPersonOutline size={20}/>
                     <span className='ml-3 text-md font-medium'>Perfil</span>
@@ -71,16 +72,19 @@ export const Sidebar = () => {
                 </Link>
 
                 <Link 
-                    href={'/'}
+                    href={'/auth/login'}
                     className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
+                    onClick={closeSideMenu}
                 >
                     <IoLogInOutline size={20}/>
                     <span className='ml-3 text-md font-medium'>Ingresar</span>
+                    
                 </Link>
 
                 <Link 
                     href={'/'}
                     className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
+                    onClick={closeSideMenu}
                 >
                     <IoLogOutOutline size={20}/>
                     <span className='ml-3 text-md font-medium'>Salir</span>
@@ -91,6 +95,7 @@ export const Sidebar = () => {
                 <Link 
                     href={'/'}
                     className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
+                    onClick={closeSideMenu}
                 >
                     <IoShirtOutline size={20}/>
                     <span className='ml-3 text-md font-medium'>Productos</span>
@@ -99,6 +104,7 @@ export const Sidebar = () => {
                 <Link 
                     href={'/'}
                     className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
+                    onClick={closeSideMenu}
                 >
                     <IoTicketOutline size={20}/>
                     <span className='ml-3 text-md font-medium'>Ordenes</span>
@@ -107,6 +113,7 @@ export const Sidebar = () => {
                 <Link 
                     href={'/'}
                     className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
+                    onClick={closeSideMenu}
                 >
                     <IoPeopleOutline size={20}/>
                     <span className='ml-3 text-md font-medium'>Usuarios</span>

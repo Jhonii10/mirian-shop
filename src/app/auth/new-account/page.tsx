@@ -1,14 +1,54 @@
+import { quicksand } from "@/font";
+import Link from "next/link";
 
 export default function NewAccountPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 ">
-      
+    <main className="flex flex-col min-h-screen pt-32 ">
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#ff0167] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <h1 className="text-3xl font-bold">New Account Page</h1>
+    <h1 className={ `${ quicksand.className } text-4xl mb-5` }>Crear cuenta</h1>
+
+    <div className="flex flex-col">
+
+      <label htmlFor="name">Nombre completo</label>
+      <input
+        className="px-5 py-2 border bg-gray-200 rounded mb-5"
+        type="text" />
+
+
+      <label htmlFor="email">Correo electronico</label>
+      <input
+        className="px-5 py-2 border bg-gray-200 rounded mb-5"
+        type="email" />
+
+
+      <label htmlFor="password">Contraseña</label>
+      <input
+        className="px-5 py-2 border bg-gray-200 rounded mb-5"
+        type="password"
+        placeholder="********"
+        />
+
+      <button
+        
+        className="btn-primary">
+        Crear cuenta
+      </button>
+
+
+      {/* divisor l ine */ }
+      <div className="flex items-center my-5">
+        <div className="flex-1 border-t border-gray-500"></div>
+        <div className="px-2 text-gray-800">O</div>
+        <div className="flex-1 border-t border-gray-500"></div>
       </div>
 
-      
-    </main>
+      <Link
+        href="/auth/login" 
+        className="btn-secondary text-center">
+        Iniciar seccion
+      </Link>
+
+    </div>
+  </main>
   );
 }
