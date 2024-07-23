@@ -28,7 +28,14 @@ export const getPaginateProductsWithImages = async ({page = 1 , take = 12}:Props
             }
         })
 
+        const totalCount = await prisma.product.count();
+        const totalPages = Math.ceil(totalCount / take);
+
+
+
        return {
+        currentPage: page,
+        totalPages: totalPages,
         products: products.map(product =>({
             ...product,
             images:product.productImage.map(image=>image.url)
@@ -36,6 +43,7 @@ export const getPaginateProductsWithImages = async ({page = 1 , take = 12}:Props
        }
         
     } catch (error) {
-        throw new Error(`${error}`)
+        throw new Error('Error al obtener los productos')
+        
     }
 }
