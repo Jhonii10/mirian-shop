@@ -1,6 +1,7 @@
 export {TopMenu} from './ui/top-menu/TopMenu'
 export {Sidebar} from './ui/sidebar/Sidebar'
 export {Footer} from './ui/footer/Footer'
+export {Pagination} from './ui/pagination/Pagination'
 
 export {SizeSelector} from './product/size-selector/SizeSelector'
 export {QuantitySelector} from './product/quantity-selector/QuantitySelector'
