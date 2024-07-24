@@ -1,4 +1,5 @@
-import { ProductSlideshow, QuantitySelector, SizeSelector } from "@/components";
+import { getProductByslug } from "@/actions";
+import { ProductSlideshow, QuantitySelector, SizeSelector, StockLabel } from "@/components";
 import { quicksand } from "@/font";
 import { initialData } from "@/seed/seed";
 import Image from "next/image";
@@ -12,10 +13,11 @@ interface Props {
 }
 
 
-export default function ProductSlugPage({params}:Props) {
+export default async function ProductSlugPage({params}:Props) {
 
     const {slug} = params;
-    const product = initialData.products.find(product => product.slug === slug);
+    const product = await getProductByslug(slug)
+
 
     if(!product){notFound()}
     
@@ -31,7 +33,9 @@ export default function ProductSlugPage({params}:Props) {
        </div>
 
        <div className="col-span-1 px-5 p-4 *:rounded">
+            <StockLabel slug={product.slug} />
             <h1 className={`${quicksand.className} antialiased font-bold text-xl`}>{product.title}</h1>
+            
             <p className="text-lg font-semibold">${product.price}</p>
             <SizeSelector
                 selectedSize={product.sizes[0]}
