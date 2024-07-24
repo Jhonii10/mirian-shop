@@ -4,7 +4,7 @@ import { quicksand } from "@/font";
 
 
 export const metadata: Metadata = {
-  title: "Mirian | shop ",
+  title: "Mirian | Shop ",
   description: "tienda virtual de miriam",
 };
 
