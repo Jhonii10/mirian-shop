@@ -4,12 +4,42 @@ import { quicksand } from "@/font";
 import { initialData } from "@/seed/seed";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-
+import type { Metadata, ResolvingMetadata } from 'next'
 
 interface Props {
     params:{
         slug:string;
     }
+}
+
+
+  
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const { slug } = params;
+
+ 
+  // fetch data
+  const product = await getProductByslug(slug)
+  console.log(product);
+  
+ 
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || []
+ 
+  return {
+    title: product?.title ?? 'Producto no encontrado',
+    description: product?.description ?? 'Producto no encontrado',
+
+    openGraph: {
+      title: product?.title ?? 'Producto no encontrado',
+      description: product?.description ?? 'Producto no encontrado',
+      images: [`/products/${product?.images[0 | 1]}`],
+    },
+  }
 }
 
 
