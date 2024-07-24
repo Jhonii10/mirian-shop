@@ -1,13 +1,15 @@
 'use server';
 
 import { prisma } from "@/lib/prisma";
+import { Gender } from "@prisma/client";
 
 interface Props {
     page?:number;
     take?:number;
+    gender?:Gender;
 }
 
-export const getPaginateProductsWithImages = async ({page = 1 , take = 12}:Props) => {
+export const getPaginateProductsWithImages = async ({page = 1 , take = 12 , gender}:Props) => {
 
     
     if (isNaN(Number(page))) page = 1;
@@ -16,8 +18,7 @@ export const getPaginateProductsWithImages = async ({page = 1 , take = 12}:Props
 
     try {
         const products = await prisma.product.findMany({
-            take,
-            skip:(page - 1) * take,
+            
             include:{
                 productImage:{
                     take:2,
@@ -25,10 +26,21 @@ export const getPaginateProductsWithImages = async ({page = 1 , take = 12}:Props
                         url:true
                     }
                 }
+            },
+            
+            skip:(page - 1) * take,
+            take:take,
+            where: {
+                gender: gender
             }
         })
 
-        const totalCount = await prisma.product.count();
+        
+
+        const totalCount = await prisma.product.count({ where: {
+            gender: gender
+        }});
+        
         const totalPages = Math.ceil(totalCount / take);
 
 
