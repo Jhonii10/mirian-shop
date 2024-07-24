@@ -10,7 +10,6 @@ interface Props {
 }
 
 export const Pagination = ({totalPages}:Props) => {
-
     
     const pathname = usePathname();
     const searchParams = useSearchParams();

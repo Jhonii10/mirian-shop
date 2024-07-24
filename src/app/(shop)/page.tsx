@@ -1,8 +1,9 @@
 import { getPaginateProductsWithImages } from "@/actions";
 import { Pagination, Title } from "@/components";
 import { ProductsGrid } from "@/components/products";
-import { initialData } from "@/seed/seed";
 import { redirect } from "next/navigation";
+
+export const revalidate = 60;
 
 interface Props {
   searchParams:{
