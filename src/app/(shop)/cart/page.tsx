@@ -52,7 +52,7 @@ export default function CartPage() {
                         <p className="text-sm sm:text-md font-semibold">{product.title}</p>
                         <p className="font-semibold">$ {product.price}</p>
                          <div className="flex flex-col items-start sm:flex-row sm:items-center gap-2 ">
-                          <QuantitySelector quantity={1}/>
+                          {/* <QuantitySelector quantity={1}/> */}
                         <button className="ml-0 sm:ml-2 ">
                           {<RiDeleteBin6Line size={25}  className="ml-0 sm:ml-5 text-zinc-500  hover:text-red-500"/>}
                         </button>

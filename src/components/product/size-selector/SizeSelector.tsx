@@ -1,3 +1,4 @@
+'use client'
 import { Size } from '@/interfaces'
 import clsx from 'clsx';
 import React from 'react'
@@ -5,9 +6,10 @@ import React from 'react'
 interface Props {
     selectedSize: Size;
     availableSizes:Size[];
+    setSelectedSize: (size: Size) => void;
 }
 
-export const SizeSelector = ({availableSizes = ['S','M'], selectedSize}:Props) => {
+export const SizeSelector = ({availableSizes, selectedSize , setSelectedSize}:Props) => {
 
   return (
     <div className='my-5'>
@@ -18,9 +20,10 @@ export const SizeSelector = ({availableSizes = ['S','M'], selectedSize}:Props) =
                 availableSizes.map((size, index) => (
                     <button 
                         key={index}
+                        onClick={()=>setSelectedSize(size)}
                         className={
                             clsx('mx-2 hover:underline text-lg',{
-                                'underline font-bold': selectedSize === size
+                                'underline font-bold':  size === selectedSize 
                             })
                         }
                     >
