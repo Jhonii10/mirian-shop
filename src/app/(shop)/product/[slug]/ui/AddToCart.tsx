@@ -22,7 +22,7 @@ export const AddToCart = ({product}:{product:Product}) => {
             return
         };
 
-        const { id, slug, title, price,images } = product;
+        const { id, slug, title, price,images,inStock} = product;
 
         const CartProduct:CartProduct = {
             id,
@@ -31,10 +31,14 @@ export const AddToCart = ({product}:{product:Product}) => {
             price,
             image:images[0],
             quantity,
-            size
+            size,
+            stock:inStock,
         };
 
         addProductToCart(CartProduct);
+        setSize(undefined);
+        setQuantity(1);
+        setPosted(false);
 
     }
     

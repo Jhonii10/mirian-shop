@@ -23,5 +23,5 @@ export interface Product {
     quantity: number;
     size:Size;
     image:string;
-
+    stock:number;
   }

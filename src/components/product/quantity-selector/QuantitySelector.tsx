@@ -11,6 +11,7 @@ interface Props {
 export const QuantitySelector = ({quantity , setQuantityChange , inStock }:Props) => {
 
     const onQuantityChanged = (value:number)=>{
+        
         if (quantity + value < 1) return;
         if (quantity + value > inStock ) return;
         setQuantityChange(quantity + value)

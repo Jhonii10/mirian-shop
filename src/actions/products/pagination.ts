@@ -1,6 +1,7 @@
 'use server';
 
-import { prisma } from "@/lib/prisma";
+
+import {prisma} from "@/lib/prisma";
 import { Gender } from "@prisma/client";
 
 interface Props {
@@ -33,9 +34,12 @@ export const getPaginateProductsWithImages = async ({page = 1 , take = 12 , gend
             where: {
                 gender: gender
             }
+
+            
         })
 
         
+            
 
         const totalCount = await prisma.product.count({ where: {
             gender: gender
