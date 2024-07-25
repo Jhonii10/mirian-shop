@@ -25,7 +25,6 @@ export async function generateMetadata(
  
   // fetch data
   const product = await getProductByslug(slug)
-  console.log(product);
   
  
   // optionally access and extend (rather than replace) parent metadata
@@ -47,7 +46,10 @@ export async function generateMetadata(
 export default async function ProductSlugPage({params}:Props) {
 
     const {slug} = params;
+    
+    
     const product = await getProductByslug(slug)
+    
 
 
     if(!product){notFound()}

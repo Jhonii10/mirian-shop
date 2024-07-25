@@ -1,22 +1,16 @@
+
 import { QuantitySelector, Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { ProductsInCart } from "./ui/ProductsInCart";
+import { useCartStore } from "@/store";
 
-const productInCart = [
-  initialData.products[0],
-  initialData.products[1],
-  initialData.products[2],
-]
+
 
 export default function CartPage() {
-  
-  if (productInCart.length <= 0) {
-    redirect('/empty')
-  }
-  
 
   return (
     <div className="flex justify-center items-center mb-4 sm:mb-72 px-2 sm:px-0">
@@ -35,34 +29,7 @@ export default function CartPage() {
           
 
           
-            {
-              productInCart.map((product) => (
-                <div key={product.slug} className="flex gap-1 border rounded-lg p-2">
-                    <Image
-                      src={`/products/${product.images[0]}`}
-                      alt={product.title}
-                      width={80}
-                      height={80}
-                      title={product.title}
-                      className=" mr-2 rounded-md object-cover"
-                    />
-                    
-                    <div className="flex flex-col justify-around gap-2">
-    
-                        <p className="text-sm sm:text-md font-semibold">{product.title}</p>
-                        <p className="font-semibold">$ {product.price}</p>
-                         <div className="flex flex-col items-start sm:flex-row sm:items-center gap-2 ">
-                          {/* <QuantitySelector quantity={1}/> */}
-                        <button className="ml-0 sm:ml-2 ">
-                          {<RiDeleteBin6Line size={25}  className="ml-0 sm:ml-5 text-zinc-500  hover:text-red-500"/>}
-                        </button>
-
-                         </div>
-                        
-                    </div>
-                </div>
-              ))
-            }
+            <ProductsInCart />
             </div>
 
 
