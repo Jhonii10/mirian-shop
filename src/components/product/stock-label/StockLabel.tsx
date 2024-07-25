@@ -4,9 +4,6 @@ import { quicksand } from '@/font'
 import React, { useEffect, useState } from 'react'
 import { StockSkeleton } from '@/components/ui/skeletons/skeletons';
 
-const shimmer =
-  'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent';
-
 
 export const StockLabel = ({ slug }: { slug: string }) => {
 
@@ -15,6 +12,7 @@ export const StockLabel = ({ slug }: { slug: string }) => {
     
     useEffect(() => {
         getStock()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getStock = async ()=>{

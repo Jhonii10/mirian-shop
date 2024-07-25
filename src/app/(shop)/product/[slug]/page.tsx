@@ -5,6 +5,7 @@ import { initialData } from "@/seed/seed";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata, ResolvingMetadata } from 'next'
+import { AddToCart } from "./ui/AddToCart";
 
 interface Props {
     params:{
@@ -67,20 +68,7 @@ export default async function ProductSlugPage({params}:Props) {
             <h1 className={`${quicksand.className} antialiased font-bold text-xl`}>{product.title}</h1>
             
             <p className="text-lg font-semibold">${product.price}</p>
-            <SizeSelector
-                selectedSize={product.sizes[0]}
-                availableSizes={product.sizes}
-            />
-
-            {/* todo: selector de cantidad */}
-            <QuantitySelector quantity={0}/>
-
-            <button 
-                className="btn-primary my-5"
-                
-                >
-                Agregar al carrito
-            </button>
+            <AddToCart product={product}/>
 
             <h3 className="font-bold text-sm ">Descripcion</h3>
             <p className="font-normal">{product.description}</p>
