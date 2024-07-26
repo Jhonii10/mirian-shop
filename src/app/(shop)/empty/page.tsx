@@ -1,7 +1,25 @@
+'use client'
+import { useCartStore } from "@/store";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
 import { IoCartOutline } from "react-icons/io5";
 
 export default function EmptyPage() {
+  const [isClient, setIsClient] = useState(false);
+
+  const getTotalProductsIncart = useCartStore(state => state.getTotalProductsIncart());
+
+  useEffect(() => {
+    setIsClient(true)
+  }, []);
+
+  if(!isClient) return ;
+
+  if(getTotalProductsIncart > 0){
+    return redirect('/cart')
+  }
+
   return (
     <div className="flex justify-center items-center h-[80vh]">
         <IoCartOutline size={80} className="mx-5"/>
