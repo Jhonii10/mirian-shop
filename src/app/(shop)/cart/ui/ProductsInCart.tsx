@@ -1,12 +1,9 @@
 'use client'
 
-import { CartProduct, Product } from '@/interfaces'
 import { useCartStore } from '@/store'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import { RiDeleteBin6Line } from 'react-icons/ri'
-import AddressPage from '../../checkout/address/page';
 import { QuantitySelector } from '@/components'
 import Link from 'next/link'
 
@@ -45,19 +42,19 @@ export const ProductsInCart = () => {
                       className=" mr-2 rounded-md object-cover"
                     />
                     
-                    <div className="flex flex-col justify-around gap-2">
+                    <div className="flex flex-col justify-around gap-2 ">
                         <Link href={`/product/${product.slug}`}>
                         <p className="text-sm sm:text-md font-semibold">{product.title}</p>
                         </Link>
                         <p className="text-sm sm:text-md font-medium">Talla: {product.size}</p>
                         <p className="font-semibold">$ {product.price}</p>
-                         <div className="flex flex-col items-start sm:flex-row sm:items-center gap-2 ">
+                         <div className="flex flex-wrap items-start sm:flex-row sm:items-center gap-2  ">
                           <QuantitySelector quantity={product.quantity} setQuantityChange={quantity=>updateProductQuantity(product ,quantity)} inStock={product.stock}/>
                         <button 
                             className="ml-0 sm:ml-2 "
                             onClick={() => removeProductFromCart(product)}
                             >
-                          {<RiDeleteBin6Line size={25}  className="ml-0 sm:ml-5 text-zinc-500  hover:text-red-500"/>}
+                          <p className='underline font-medium  hover:text-red-500 hover:font-bold'>Eliminar</p>
                         </button>
 
                          </div>

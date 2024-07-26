@@ -60,11 +60,11 @@ export const TopMenu = () => {
             <Link href={'/search'} >
                 <IoSearchOutline className='w-5 h-5' />
             </Link>
-            <Link href={'/cart'} >
+            <Link href={(isClient && getTotalProductsIncart === 0) ?'/empty':'/cart'} >
                 <div className='relative'>
                     {
                         (isClient && getTotalProductsIncart > 0) &&
-                        <span className='absolute text-xs  rounded-full px-1 font-bold -top-2 -right-2 bg-blue-500 text-white '>
+                        <span className='absolute text-xs  rounded-full px-1 font-bold -top-2 -right-2 bg-blue-500 text-white fade-in '>
                         {getTotalProductsIncart}
                     </span>
                     }

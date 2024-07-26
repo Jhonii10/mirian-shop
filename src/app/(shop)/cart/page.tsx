@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { ProductsInCart } from "./ui/ProductsInCart";
 import { useCartStore } from "@/store";
+import { OrderSummary } from "./ui/OrderSummary";
 
 
 
@@ -34,34 +35,7 @@ export default function CartPage() {
 
 
             {/* checkout */}
-            <div>
-            <div className="bg-white rounded-lg shadow-xl p-7">
-              <h2 className="text-xl mb-2 font-semibold">Resumen del pedido</h2>
-              <div className="grid grid-cols-2">
-                <span className="font-medium">No Productos</span>
-                <span className="text-right">3 articulos</span>
-
-                <span className="font-medium">Subtotal</span>
-                <span className="text-right">$100</span>
-
-                <span className="font-medium">impuesto 19%</span>
-                <span className="text-right">$19</span>
-
-                <span className="font-medium">Total</span>
-                <span className="text-right"  >$119</span>
-              </div>
-
-              <div>
-                <Link 
-                  href={'/checkout/address'}
-                  className="btn-primary flex justify-center mt-2 "
-                  >
-                  Verificar
-                </Link>
-              </div>
-
-            </div>
-            </div>
+            <OrderSummary/>
         
 
         </div>
