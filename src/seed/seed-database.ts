@@ -8,13 +8,14 @@ async function main(){
     await Promise.all([
          prisma.productImage.deleteMany(),
          prisma.product.deleteMany(),
+         prisma.user.deleteMany(),
          
     ])
 
     await prisma.category.deleteMany();
 
     // categories
-    const {categorys,products} = initialData
+    const {categorys,products , users} = initialData
 
     const categoryData = categorys.map(category =>({name:category}));
     
@@ -53,6 +54,11 @@ async function main(){
             data:imagesData
         })
 
+    })
+
+    // user 
+    await prisma.user.createMany({
+        data:users
     })
 
 
