@@ -2,11 +2,11 @@
 
 import { authenticate } from '@/actions/auth/actions';
 import Link from 'next/link'
-import React, { useActionState } from 'react'
+import React, { useActionState, useEffect } from 'react'
 import { IoInformationOutline } from 'react-icons/io5';
-import AddressPage from '../../../(shop)/checkout/address/page';
 import { useFormState, useFormStatus } from 'react-dom';
 import clsx from 'clsx';
+import { useRouter } from 'next/navigation';
 
 export const LoginForm = () => {
 
@@ -14,6 +14,14 @@ export const LoginForm = () => {
         authenticate,
         undefined,
       );
+
+    const router = useRouter();
+
+    useEffect(() => {
+        if (state === 'Success') {
+            router.replace('/')
+        }
+    }, [state]);
     
 
   return (

@@ -11,6 +11,7 @@ export const authConfig = {
     signIn: '/auth/login',
     newUser: '/auth/new-account',
   },
+  
   providers: [
     Credentials({
         async authorize(credentials) {
@@ -48,4 +49,4 @@ export const authConfig = {
 } satisfies NextAuthConfig
 
 
-export const {signIn,signOut,auth} = NextAuth(authConfig)
+export const {signIn,signOut,auth , handlers} = NextAuth(authConfig)
