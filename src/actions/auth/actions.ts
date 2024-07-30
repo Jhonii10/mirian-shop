@@ -1,18 +1,34 @@
 'use server';
  
 
-import { signIn } from '@/auth.config';
+import { signIn, signOut } from '@/auth.config';
 
  
 // ...
  
-export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData,
-) {
-   const email = formData.get('email')
-   const password = formData.get('password')
+    export async function authenticate(
+    prevState: string | undefined,
+    formData: FormData,
+    ) {
+        try {
 
-   console.log({email , password});
-   
-}
+            
+            await signIn('credentials', {
+            ...Object.fromEntries(formData),
+            redirect: false,
+            });
+        
+            return 'Success';
+        
+        
+        } catch (error) {
+            return 'CredentialsSignin'
+        
+        
+        }
+    
+    }
+
+    export const logOut = async () => {
+        await signOut();
+    }

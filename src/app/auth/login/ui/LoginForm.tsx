@@ -2,15 +2,22 @@
 
 import { authenticate } from '@/actions/auth/actions';
 import Link from 'next/link'
-import React from 'react'
-import { useFormState } from 'react-dom';
+import React, { useActionState } from 'react'
+import { IoInformationOutline } from 'react-icons/io5';
+import AddressPage from '../../../(shop)/checkout/address/page';
+import { useFormState, useFormStatus } from 'react-dom';
+import clsx from 'clsx';
 
 export const LoginForm = () => {
 
-    const [state, dispatch] = useFormState(authenticate as any, undefined);
+    const [state, formAction] = useFormState(
+        authenticate,
+        undefined,
+      );
+    
 
   return (
-    <form action={dispatch} className="flex flex-col">
+    <form action={formAction} className="flex flex-col">
 
         <label htmlFor="email">Correo electrónico</label>
         <input
@@ -28,15 +35,17 @@ export const LoginForm = () => {
           name='password'
           required
           />
+          
+          {state === 'CredentialsSignin' && (
+            <div className='flex mb-5'>
+              <IoInformationOutline className="h-5 w-5 text-red-500 " />
+              <p className="text-sm text-red-500">Credenciales invalidas</p>
+            </div>
+          )}
+        
 
-        <button
-          type='submit'
-          className="btn-primary">
-          Ingresar
-        </button>
+        <LoginButton/>
 
-
-        {/* divisor l ine */ }
         <div className="flex items-center my-5">
           <div className="flex-1 border-t border-gray-500"></div>
           <div className="px-2 text-gray-800">O</div>
@@ -51,4 +60,25 @@ export const LoginForm = () => {
 
       </form>
   )
+}
+
+
+
+const LoginButton = ()=>{
+
+    const {pending}= useFormStatus();
+    return(
+        <button
+          type='submit'
+          className={clsx({
+            "btn-primary":!pending,
+            "btn-disabled": pending
+          })}
+          disabled={pending}
+          >
+          
+          Ingresar
+        </button>
+
+    )
 }
