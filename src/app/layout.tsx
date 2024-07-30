@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { quicksand } from "@/font";
+import { Provider } from "@/components";
+
 
 
 export const metadata: Metadata = {
@@ -13,9 +15,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  
   return (
     <html lang="en">
-      <body className={quicksand.className}>{children}</body>
+      <body className={quicksand.className}>
+        <Provider>
+          {children}
+        </Provider>
+      </body>
     </html>
   );
 }

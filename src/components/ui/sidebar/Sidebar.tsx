@@ -3,13 +3,18 @@
 import { logOut } from '@/actions'
 import { useUiStore } from '@/store'
 import clsx from 'clsx'
+import { Session } from 'next-auth'
 import Link from 'next/link'
 import React from 'react'
 import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from 'react-icons/io5'
 
-export const Sidebar = () => {
+export const Sidebar =  ({session}:{session:Session | null}) => {
   const isSideMenuOpen = useUiStore((state) => state.isSideMenuOpen)
   const closeSideMenu = useUiStore((state) => state.closeSideMenu)
+  
+  const isAuthenticated = !!session?.user;
+
+  
   return (
     <>
        {
@@ -72,27 +77,40 @@ export const Sidebar = () => {
                     <span className='ml-3 text-md font-medium'>Ordenes</span>
                 </Link>
 
-                <Link 
-                    href={'/auth/login'}
-                    className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
-                    onClick={closeSideMenu}
-                >
-                    <IoLogInOutline size={20}/>
-                    <span className='ml-3 text-md font-medium'>Ingresar</span>
-                    
-                </Link>
+                {
+                    isAuthenticated
+                    && ( <button 
+                        className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all w-full'
+                        onClick={()=>{
+                            logOut();
+                            closeSideMenu();
+                        }}
+                        
+                    >
+                        <IoLogOutOutline size={20}/>
+                        <span className='ml-3 text-md font-medium'>Salir</span>
+                    </button>
 
-                <button 
-                    className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
-                    onClick={()=>{
-                        logOut();
-                        closeSideMenu();
-                    }}
-                    
-                >
-                    <IoLogOutOutline size={20}/>
-                    <span className='ml-3 text-md font-medium'>Salir</span>
-                </button>
+                    )
+                }
+                {
+                !isAuthenticated &&(
+                        <Link 
+                        href={'/auth/login'}
+                        className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
+                        onClick={closeSideMenu}
+                        >
+                        <IoLogInOutline size={20}/>
+                        <span className='ml-3 text-md font-medium'>Ingresar</span>
+                        
+                        </Link>
+
+                    )
+                }
+
+                
+
+                
 
                 <div className='w-full h-px bg-gray-200 my-5'/>
 
