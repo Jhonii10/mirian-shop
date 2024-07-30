@@ -13,6 +13,10 @@ export const Sidebar =  ({session}:{session:Session | null}) => {
   const closeSideMenu = useUiStore((state) => state.closeSideMenu)
   
   const isAuthenticated = !!session?.user;
+  const isAdmin = session?.user.role === 'admin' ? true : false;
+
+
+
 
   
   return (
@@ -59,23 +63,32 @@ export const Sidebar =  ({session}:{session:Session | null}) => {
 
                 {/* menu */}
 
-                <Link 
-                    href={'/profile'}
-                    className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
-                    onClick={closeSideMenu}
-                >
-                    <IoPersonOutline size={20}/>
-                    <span className='ml-3 text-md font-medium'>Perfil</span>
-                </Link>
+                {
+                    isAuthenticated && (
+                        <>
+                            <Link 
+                                href={'/profile'}
+                                className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
+                                onClick={closeSideMenu}
+                            >
+                                <IoPersonOutline size={20}/>
+                                <span className='ml-3 text-md font-medium'>Perfil</span>
+                            </Link>
+                            
 
-                <Link 
-                    href={'/orders'}
-                    className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
-                    onClick={closeSideMenu}
-                >
-                    <IoTicketOutline size={20}/>
-                    <span className='ml-3 text-md font-medium'>Ordenes</span>
-                </Link>
+                            <Link 
+                                href={'/orders'}
+                                className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
+                                onClick={closeSideMenu}
+                            >
+                                <IoTicketOutline size={20}/>
+                                <span className='ml-3 text-md font-medium'>Ordenes</span>
+                            </Link>
+                        </>
+                    )
+                }
+
+                
 
                 {
                     isAuthenticated
@@ -109,9 +122,11 @@ export const Sidebar =  ({session}:{session:Session | null}) => {
                 }
 
                 
-
+                {
+                    isAuthenticated && isAdmin && 
                 
-
+                (
+                <>
                 <div className='w-full h-px bg-gray-200 my-5'/>
 
                 <Link 
@@ -140,8 +155,9 @@ export const Sidebar =  ({session}:{session:Session | null}) => {
                     <IoPeopleOutline size={20}/>
                     <span className='ml-3 text-md font-medium'>Usuarios</span>
                 </Link>
-
-
+                </>
+                )
+                }
             </nav>
         
     </>
