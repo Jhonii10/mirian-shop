@@ -1,5 +1,5 @@
 export {getPaginateProductsWithImages} from './products/pagination'
 export {getProductByslug} from './products/getProductByslug'
 export {getStockBySlug} from './products/getStockBySlug'
-
+export {getContries} from './countries/getContries'
 export * from './auth/actions'
