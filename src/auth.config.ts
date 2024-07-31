@@ -13,6 +13,25 @@ export const authConfig = {
   },
 
   callbacks:{
+    authorized({ auth, request: { nextUrl } }) {
+        
+        const isLoggedIn = !!auth?.user;
+        const isAdmin = auth?.user?.role === 'admin'; 
+        const isOnCheckout = ['/checkout','/checkout/address','/orders/'].some(route => nextUrl.pathname.startsWith(route));
+        const isProtedRoutes = ['/admin','/products','/users'].some(route => nextUrl.pathname.startsWith(route));
+        if (isOnCheckout) {
+          if (isLoggedIn) return true;
+          return false; 
+        }
+
+        if(isProtedRoutes){
+            if(isLoggedIn && isAdmin) return true;
+            return Response.redirect(new URL('/', nextUrl));
+        }
+
+        return true;
+      },
+
     jwt({token , user}) {
         if (user) {
            token.data = user; 
