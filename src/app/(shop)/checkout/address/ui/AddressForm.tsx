@@ -2,9 +2,10 @@
 
 import { getContries } from '@/actions';
 import { Country } from '@/interfaces';
+import { useAddressStore } from '@/store';
 import clsx from 'clsx';
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 
 
@@ -25,16 +26,24 @@ export const AddressForm =({countries}:{countries:Country[]}) => {
 
     
    
-    const {handleSubmit , register, formState:{isValid}} = useForm<FormInputs>({
+    const {handleSubmit , register, formState:{isValid}, reset} = useForm<FormInputs>({
         defaultValues:{
 
         }
     });
 
+
+    const setAddres = useAddressStore(state => state.setAddress);
+    const address = useAddressStore(state => state.address);
+
+    useEffect(() => {
+        if (address) {
+            reset(address)
+        }
+    }, [address]);
+
     const onSubmit = (data:FormInputs)=>{
-        console.log('click');
-        
-        console.log(data)
+        setAddres(data)
         
     }
 
