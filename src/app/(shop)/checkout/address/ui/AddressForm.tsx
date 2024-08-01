@@ -1,7 +1,7 @@
 "use client";
 
-import { getContries, setUserAddres } from '@/actions';
-import { Country } from '@/interfaces';
+import { deleteUserAddress, getContries, setUserAddres } from '@/actions';
+import { Address, Country } from '@/interfaces';
 import { useAddressStore } from '@/store';
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
@@ -24,25 +24,37 @@ type FormInputs = {
 
 }
 
-export const AddressForm =({countries}:{countries:Country[]}) => {
+interface Props {
+    countries:Country[];
+    userStoreAddress?: Partial<Address | null>;
+}
+
+export const AddressForm =({countries , userStoreAddress = {}}: Props) => {
 
     const router = useRouter();
+
 
     const session = useSession({
         required: true
     });
+  
 
-    const {handleSubmit , register, formState:{isValid}, reset} = useForm<FormInputs>();
+    const {handleSubmit , register, formState:{isValid}, reset} = useForm<FormInputs>({
+        defaultValues:{
+            ...userStoreAddress,
+            rememberAddres: false
+        }
+    });
 
 
     const setAddres = useAddressStore(state => state.setAddress);
     const address = useAddressStore(state => state.address);
 
     useEffect(() => {
-        if (address) {
+        if (address.firtsName) {
             reset(address)
         }
-    }, [address]);
+    }, []);
 
     const onSubmit = (data:FormInputs)=>{
         
@@ -52,8 +64,12 @@ export const AddressForm =({countries}:{countries:Country[]}) => {
         
         if (rememberAddres) {
             setUserAddres(rest , session.data?.user.id as string)
-            router.replace('/checkout')
+            
+        }else{
+            deleteUserAddress(session.data?.user.id as string)
         }
+
+        router.replace('/checkout')
         
     }
 

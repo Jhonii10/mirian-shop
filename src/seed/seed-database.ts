@@ -9,6 +9,7 @@ async function main(){
     await Promise.all([
          prisma.productImage.deleteMany(),
          prisma.product.deleteMany(),
+         prisma.userAddress.deleteMany(),
          prisma.user.deleteMany(),
          prisma.country.deleteMany(),
          
