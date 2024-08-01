@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/prisma";
 
 
-export const getUserAddress = async (userId: string | undefined) => {
+export const getUserAddress = async (userId: string) => {
   
     try {
         const address = await prisma.userAddress.findUnique({

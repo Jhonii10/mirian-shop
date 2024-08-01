@@ -5,7 +5,6 @@ import { Address, Country } from '@/interfaces';
 import { useAddressStore } from '@/store';
 import clsx from 'clsx';
 import { useSession } from 'next-auth/react';
-import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
@@ -26,7 +25,7 @@ type FormInputs = {
 
 interface Props {
     countries:Country[];
-    userStoreAddress?: Partial<Address | null>;
+    userStoreAddress?: Partial<Address>;
 }
 
 export const AddressForm =({countries , userStoreAddress = {}}: Props) => {
@@ -58,9 +57,9 @@ export const AddressForm =({countries , userStoreAddress = {}}: Props) => {
 
     const onSubmit = (data:FormInputs)=>{
         
-        setAddres(data)
-        const {rememberAddres, ...rest} = data
         
+        const {rememberAddres, ...rest} = data
+        setAddres(rest)
         
         if (rememberAddres) {
             setUserAddres(rest , session.data?.user.id as string)
