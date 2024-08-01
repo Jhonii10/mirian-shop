@@ -5,10 +5,10 @@ interface State {
     address:{
         firtsName: string;
         lastName: string;
-        Address: string;
-        Address_2?: string;
+        address: string;
+        address_2?: string;
         postalCode: string;
-        city: string;
+        city:string;
         country: string;
         phone: string;
     };
@@ -24,8 +24,8 @@ export const useAddressStore = create<State>()(
         address:{
             firtsName:'',
             lastName:'',
-            Address:'',
-            Address_2:'',
+            address:'',
+            address_2:'',
             postalCode:'',
             city:'',
             country:'',

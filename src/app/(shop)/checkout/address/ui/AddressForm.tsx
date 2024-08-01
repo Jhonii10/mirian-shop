@@ -1,10 +1,12 @@
 "use client";
 
-import { getContries } from '@/actions';
+import { getContries, setUserAddres } from '@/actions';
 import { Country } from '@/interfaces';
 import { useAddressStore } from '@/store';
 import clsx from 'clsx';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 
@@ -12,10 +14,10 @@ import { useForm } from 'react-hook-form';
 type FormInputs = {
     firtsName: string;
     lastName: string;
-    Address: string;
-    Address_2?: string;
+    address: string;
+    address_2?: string;
     postalCode: string;
-    city: string;
+    city:string;
     country: string;
     phone: string;
     rememberAddres:boolean;
@@ -24,13 +26,13 @@ type FormInputs = {
 
 export const AddressForm =({countries}:{countries:Country[]}) => {
 
-    
-   
-    const {handleSubmit , register, formState:{isValid}, reset} = useForm<FormInputs>({
-        defaultValues:{
+    const router = useRouter();
 
-        }
+    const session = useSession({
+        required: true
     });
+
+    const {handleSubmit , register, formState:{isValid}, reset} = useForm<FormInputs>();
 
 
     const setAddres = useAddressStore(state => state.setAddress);
@@ -43,7 +45,15 @@ export const AddressForm =({countries}:{countries:Country[]}) => {
     }, [address]);
 
     const onSubmit = (data:FormInputs)=>{
+        
         setAddres(data)
+        const {rememberAddres, ...rest} = data
+        
+        
+        if (rememberAddres) {
+            setUserAddres(rest , session.data?.user.id as string)
+            router.replace('/checkout')
+        }
         
     }
 
@@ -77,7 +87,7 @@ export const AddressForm =({countries}:{countries:Country[]}) => {
             <input 
               type="text" 
               className="p-2 border rounded-md bg-gray-200"
-              {...register('Address', { required:true} )}
+              {...register('address', { required:true} )}
             />
           </div>
 
@@ -86,7 +96,7 @@ export const AddressForm =({countries}:{countries:Country[]}) => {
             <input 
               type="text" 
               className="p-2 border rounded-md bg-gray-200"
-              {...register('Address_2', { required:false} )}
+              {...register('address_2', { required:false} )}
             />
           </div>
 
