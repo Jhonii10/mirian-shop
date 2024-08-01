@@ -2,12 +2,14 @@ import { Title } from "@/components";
 import { AddressForm } from "./ui/AddressForm";
 import { getContries, getUserAddress } from "@/actions";
 import { auth } from "@/auth.config";
+import { Address } from "@/interfaces";
 
 export default async function AddressPage() {
 
   const countries = await getContries();
   const session = await auth();
-  const userStoreAddress = await getUserAddress(session?.user.id);
+  const userStoreAddress = await getUserAddress(session?.user.id as string);
+
 
   
   return (
@@ -19,7 +21,7 @@ export default async function AddressPage() {
         
         <Title title="Dirección" subtitle="Dirección de entrega" />
 
-        <AddressForm countries={countries} userStoreAddress={userStoreAddress}/>
+        <AddressForm countries={countries} userStoreAddress={userStoreAddress as Address}/>
 
       </div>
 
