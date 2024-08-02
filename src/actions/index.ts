@@ -5,4 +5,6 @@ export {getContries} from './countries/getContries'
 export {setUserAddres} from './address/setUserAddres'
 export {deleteUserAddress} from './address/deleteUserAddress'
 export {getUserAddress} from './address/getUserAddress'
+export {placeOrder} from './order/placeOrder'
+
 export * from './auth/actions'
