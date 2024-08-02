@@ -1,4 +1,5 @@
 'use client';
+import { placeOrder } from '@/actions';
 import { useAddressStore, useCartStore } from '@/store';
 import { currencyFormat } from '@/utils';
 import clsx from 'clsx';
@@ -28,14 +29,17 @@ export const PlaceOrders = () => {
     const onPlaceOrder = async()=>{
         setInPlaceOrder(true)
 
-        const productToCart = cart.map((product)=>({
+        const productToOrder = cart.map((product)=>({
             productId : product.id,
             quantity : product.quantity,
             size: product.size
         }))
 
-        //setInPlaceOrder(false) -> finish transitions 
-        console.log({productToCart});
+        const rest  = await placeOrder(productToOrder , addressUser)
+
+        console.log(rest);
+        
+
         
     }
 
