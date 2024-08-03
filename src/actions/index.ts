@@ -6,5 +6,7 @@ export {setUserAddres} from './address/setUserAddres'
 export {deleteUserAddress} from './address/deleteUserAddress'
 export {getUserAddress} from './address/getUserAddress'
 export {placeOrder} from './order/placeOrder'
+export {getOrderById} from './order/getOrderById'
+export {getOrdersByUser} from './order/getordersbyUser'
 
 export * from './auth/actions'
