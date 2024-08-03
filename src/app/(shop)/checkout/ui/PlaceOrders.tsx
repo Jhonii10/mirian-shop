@@ -1,26 +1,34 @@
 'use client';
+
 import { placeOrder } from '@/actions';
 import { useAddressStore, useCartStore } from '@/store';
 import { currencyFormat } from '@/utils';
 import clsx from 'clsx';
-import Link from 'next/link'
+import { useRouter } from 'next/navigation';
+
 import React, { useEffect, useState } from 'react'
 
 export const PlaceOrders = () => {
 
+    const router = useRouter();
 
     const [loaded, setLoaded] = useState(false);
     const [isPlaceOrder, setInPlaceOrder] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const {subtotal, total, tax , itemsInCart} = useCartStore(state => state.getSummaryInformation());
     const addressUser = useAddressStore(state => state.address);
     const cart = useCartStore(state => state.cart);
+    const clearCart = useCartStore(state => state.clearCart)
+
+    
 
     const {firtsName,lastName,address, country, city ,phone , postalCode} = addressUser;
 
     useEffect(() => {
         setLoaded(true)
     }, []);
+
 
     if (!loaded) {
         return <p>Cargando...</p>
@@ -35,11 +43,22 @@ export const PlaceOrders = () => {
             size: product.size
         }))
 
-        const rest  = await placeOrder(productToOrder , addressUser)
+        const resp  = await placeOrder(productToOrder , addressUser)
+        if (!resp.ok) {
+            setInPlaceOrder(false);
+            setErrorMessage(resp.message);
+            return;
+        }else{
+          
+          
 
-        console.log(rest);
+          setTimeout(() => {
+            clearCart()
+          },500);
+
+          router.replace(`/orders/${resp.order?.id}`);
+        }
         
-
         
     }
 
@@ -83,6 +102,8 @@ export const PlaceOrders = () => {
             <a className="underline" href="#">politica de privacidad</a>
           </span>
         </p>
+    
+        <span className='text-red-600 text-sm font-semibold'>{errorMessage}</span>
 
         <button
           className={ clsx( {

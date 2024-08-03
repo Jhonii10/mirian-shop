@@ -1,12 +1,7 @@
 
-import { QuantitySelector, Title } from "@/components";
-import { initialData } from "@/seed/seed";
-import Image from "next/image";
+import { Title } from "@/components";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { ProductsInCart } from "./ui/ProductsInCart";
-import { useCartStore } from "@/store";
+import { ProductsInCart } from "./ui/ProductsInCart";;
 import { OrderSummary } from "./ui/OrderSummary";
 
 
