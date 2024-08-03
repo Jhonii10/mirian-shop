@@ -3,6 +3,8 @@
 import { auth } from "@/auth.config";
 import { Address, Size } from "@/interfaces";
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 interface ProductToOrder {
   productId: string;
@@ -85,7 +87,7 @@ export const placeOrder = async (
       const updatedProducts = await Promise.all(updatedProductsPromises);
 
       updatedProducts.forEach((product) => {
-        if (product.inStock <= 0) {
+        if (product.inStock < 0) {
           throw new Error(`${product.title} no tiene inventario suficiente`);
         }
       });
@@ -134,6 +136,8 @@ export const placeOrder = async (
 
 
     });
+
+  
 
     return {
       ok: true,

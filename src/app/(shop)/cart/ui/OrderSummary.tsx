@@ -2,9 +2,13 @@
 import { useCartStore } from '@/store'
 import { currencyFormat } from '@/utils'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 export const OrderSummary = () => {
+
+    const router = useRouter();
+
 
     const [isClient, setIsClient] = useState(false);
     const {subtotal, total, tax , itemsInCart} = useCartStore(state => state.getSummaryInformation())
@@ -12,6 +16,17 @@ export const OrderSummary = () => {
     useEffect(() => {
         setIsClient(true)
     }, []);
+
+    useEffect(() => {
+
+      if ( itemsInCart === 0 && isClient === true )   {
+        router.replace('/empty')
+      }
+  
+  
+    },[ itemsInCart, isClient, router])
+  
+  
 
     if(!isClient) return <p>Cargando...</p>
 

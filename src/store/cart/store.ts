@@ -13,7 +13,8 @@ interface State {
         subtotal: number;
         tax: number;
         itemsInCart: number;
-    }
+    };
+    clearCart: ()=>void;
 }
 
 export const useCartStore = create<State>()(
@@ -102,7 +103,11 @@ export const useCartStore = create<State>()(
                 tax,
                 itemsInCart
               };
-            }
+            },
+
+            clearCart:()=>{
+                set({cart:[]})
+            },
 
 
 
