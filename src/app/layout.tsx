@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { quicksand } from "@/font";
-import { Provider } from "@/components";
+import { Providers } from "@/components";
 
 
 
@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={quicksand.className}>
-        <Provider>
+        <Providers>
           {children}
-        </Provider>
+        </Providers>
       </body>
     </html>
   );

@@ -7,8 +7,10 @@ export {StockLabel} from './product/stock-label/StockLabel'
 export {SizeSelector} from './product/size-selector/SizeSelector'
 export {QuantitySelector} from './product/quantity-selector/QuantitySelector'
 export {ProductSlideshow} from './product/slideshow/ProductSlideshow'
-export {Provider} from './provider/Provider'
+export {Providers} from './providers/Providers'
 
 
 export * from './ui/not-found/PageNotFound'
 export * from './ui/title/Title'
+
+export {PayPalButton} from './paypal/PaypalButton'

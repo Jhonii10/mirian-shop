@@ -54,7 +54,7 @@ export const PlaceOrders = () => {
 
           setTimeout(() => {
             clearCart()
-          },500);
+          },1000);
 
           router.replace(`/orders/${resp.order?.id}`);
         }
