@@ -7,11 +7,11 @@ async function main(){
     
     // remove tables database 
 
-    await Promise.all([
-        prisma.orderAddress.deleteMany(),
-        prisma.orderItem.deleteMany(),
-        prisma.order.deleteMany(),
-    ])
+    
+    await prisma.orderAddress.deleteMany(),
+    await prisma.orderItem.deleteMany(),
+    await prisma.order.deleteMany(),
+    
     
     await Promise.all([
          prisma.productImage.deleteMany(),
