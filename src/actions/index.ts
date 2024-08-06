@@ -8,5 +8,6 @@ export {getUserAddress} from './address/getUserAddress'
 export {placeOrder} from './order/placeOrder'
 export {getOrderById} from './order/getOrderById'
 export {getOrdersByUser} from './order/getordersbyUser'
+export {setTransactionId} from './payments/setTransactionId'
 
 export * from './auth/actions'
