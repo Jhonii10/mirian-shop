@@ -113,7 +113,7 @@ export default async function OrderIdPage({params}:Props) {
 
               {
                 !order?.isPaid ? (
-                  <PayPalButton/>
+                  <PayPalButton amount={order!.total} orderId={order!.id}/>
                 )
                 :(
                   <div className={clsx('flex items-center rounded-lg py-2 px-3.5 text-xs font-bold text-white mb-5',{
