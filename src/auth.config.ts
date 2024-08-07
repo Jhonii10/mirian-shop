@@ -18,7 +18,7 @@ export const authConfig = {
         const isLoggedIn = !!auth?.user;
         const isAdmin = auth?.user?.role === 'admin'; 
         const isOnCheckout = ['/checkout','/checkout/address','/orders/'].some(route => nextUrl.pathname.startsWith(route));
-        const isProtedRoutes = ['/admin','/products','/users'].some(route => nextUrl.pathname.startsWith(route));
+        const isProtedRoutes = ['/admin','/admin/products','/admin/users','/admin/orders','/admin/orders/'].some(route => nextUrl.pathname.startsWith(route));
         if (isOnCheckout) {
           if (isLoggedIn) return true;
           return false; 

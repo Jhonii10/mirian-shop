@@ -11,5 +11,7 @@ export {getOrdersByUser} from './order/getordersbyUser'
 export {getOrdersByAdmin} from './order/getOrderByAdmin'
 export {setTransactionId} from './payments/setTransactionId'
 export {paypalCheckPayment} from './payments/paypalCheckPayment'
+export {getAllUsers} from './users/getAllUsers'
+export {changeUserRole} from './users/changeUserRole'
 
 export * from './auth/actions'
