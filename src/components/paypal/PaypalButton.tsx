@@ -33,6 +33,7 @@ export const PayPalButton = ({orderId , amount}:Props) => {
       intent:'CAPTURE',
       purchase_units: [
         {
+          invoice_id:orderId,
           amount: {
             value:roundedAmount.toString(),
             currency_code: 'USD',
