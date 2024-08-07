@@ -139,7 +139,7 @@ export const Sidebar =  ({session}:{session:Session | null}) => {
                 </Link>
 
                 <Link 
-                    href={'/'}
+                    href={'/admin/orders'}
                     className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
                     onClick={closeSideMenu}
                 >
