@@ -8,6 +8,7 @@ export {getUserAddress} from './address/getUserAddress'
 export {placeOrder} from './order/placeOrder'
 export {getOrderById} from './order/getOrderById'
 export {getOrdersByUser} from './order/getordersbyUser'
+export {getOrdersByAdmin} from './order/getOrderByAdmin'
 export {setTransactionId} from './payments/setTransactionId'
 export {paypalCheckPayment} from './payments/paypalCheckPayment'
 
