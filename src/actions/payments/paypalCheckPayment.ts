@@ -1,5 +1,8 @@
 "use server";
 
+import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
+
 export const paypalCheckPayment = async (paypalTransactionId:string) => {
 
     
@@ -13,11 +16,13 @@ export const paypalCheckPayment = async (paypalTransactionId:string) => {
         }
     }
 
-    try {
+    
         
     const resp = await verifyPayPalPayment(authtoken,paypalTransactionId)
     
     const { status, purchase_units } = resp;
+
+    const {invoice_id:orderId} = purchase_units[0];
 
     if (status !== 'COMPLETED') {
         return{
@@ -26,9 +31,24 @@ export const paypalCheckPayment = async (paypalTransactionId:string) => {
         }
     }
     
-    console.log({status, purchase_units});
+    try {
+        
+        await prisma.order.update({
+            where:{
+                id:orderId,
+            },
+            data:{
+                isPaid:true,
+                paidAt:new Date(),
+            }
+        })
 
-    // todo: actualizar el estado del pedido en la base de datos 
+        revalidatePath(`/orders/${orderId}`)
+
+        return{
+            ok:true,
+            message:'Se ha realizado el pago en paypal',
+        }
 
     } catch (error) {
       console.error(error);
@@ -69,7 +89,7 @@ const getPaypalBearerToken = async ()=>{
     redirect: "follow"
     } as any;
 
-    const resp = await fetch(PAYPAL_OAUTH_URL, requestOptions ).then(res => res.json())
+    const resp = await fetch(PAYPAL_OAUTH_URL, {...requestOptions, cache:'no-store' } ).then(res => res.json())
 
     return resp.access_token
 
