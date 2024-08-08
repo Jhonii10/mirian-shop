@@ -10,6 +10,12 @@ export interface Product {
     title: string;
     gender: Category;
   }
+
+  export interface ProductImage{
+    id: string;
+    url: string;
+    productId?: string;
+  }
   
   type Category = 'men'|'women'|'kid'|'unisex';
   export type Size = 'XS'|'S'|'M'|'L'|'XL'|'XXL'|'XXXL' | undefined;

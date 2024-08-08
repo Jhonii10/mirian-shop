@@ -23,7 +23,7 @@ export default async function ProductSlugPage({params}:Props) {
     const title = (slug === 'new') ? 'Nuevo producto':'Editar producto'
 
   return (
-    <div className="px-4">
+    <div className="px-0 sm:px-4">
       <Title title={title}/>
       <ProductForm product={product} categories={categories}/>
     </div>
