@@ -130,9 +130,9 @@ export const Sidebar =  ({session}:{session:Session | null}) => {
                 <div className='w-full h-px bg-gray-200 my-5'/>
 
                 <Link 
-                    href={'/'}
+                    href={'/admin/products'}
                     className='flex items-center mt-5 p-2 hover:bg-gray-100 rounded-md transition-all'
-                    onClick={()=>{logOut;closeSideMenu;}}
+                    onClick={closeSideMenu}
                 >
                     <IoShirtOutline size={20}/>
                     <span className='ml-3 text-md font-medium'>Productos</span>
