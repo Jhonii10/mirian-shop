@@ -11,7 +11,7 @@ export interface Product {
     gender: Category;
   }
   
-  export type Category = 'men'|'women'|'kid'|'unisex';
+  type Category = 'men'|'women'|'kid'|'unisex';
   export type Size = 'XS'|'S'|'M'|'L'|'XL'|'XXL'|'XXXL' | undefined;
   export type Type = 'shirts'|'pants'|'hoodies'|'hats';
 

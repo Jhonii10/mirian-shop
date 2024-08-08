@@ -13,5 +13,6 @@ export {setTransactionId} from './payments/setTransactionId'
 export {paypalCheckPayment} from './payments/paypalCheckPayment'
 export {getAllUsers} from './users/getAllUsers'
 export {changeUserRole} from './users/changeUserRole'
+export {getCategories} from './categories/getCategories'
 
 export * from './auth/actions'
