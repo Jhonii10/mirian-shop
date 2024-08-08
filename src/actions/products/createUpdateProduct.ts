@@ -3,6 +3,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { Gender, Product, Size } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 const productSchema = z.object({
@@ -30,10 +31,12 @@ export const createUpdateProduct = async (formData:FormData) => {
     }
 
    const product = productParsed.data;
-   product.slug = product.slug.toLowerCase().replace(/ /g, '-').trim()
+   product.slug = product.slug.toLowerCase().replace(/ /g, '_').trim()
 
    const {id, ...rest} = product;
 
+   try {
+    
    const primatx = await prisma.$transaction(async (tx)=>{
 
         let product:Product;
@@ -56,21 +59,48 @@ export const createUpdateProduct = async (formData:FormData) => {
             }
            })
 
-           console.log(product);
            
 
         }else{
-
-        }
+            product = await prisma.product.create({
+                data:{
+                    ...rest,
+                    sizes:{
+                        set:rest.sizes as Size[]
+                    },
+                    tags:{
+                        set: tagsArray
+                    }
+                }
+            }
+        )}
 
         return{
-            ok:true,
+            product:product,
         }
         
-   }) 
+        
+   });
+   
+   
+   let src = primatx.product.slug;
 
-    return {
-        ok: true,
+   revalidatePath('/admin/products')
+   revalidatePath(`/admin/products/${src}`)
+   revalidatePath(`/product/${src}`)
+
+    return{
+    ok:true,
+    product:primatx.product
     }
+
+    } catch (error) {
+        return{
+            ok:false,
+            error:'No se pudo actualizar o crear producto'
+        }
+        
+    }
+
 
 }

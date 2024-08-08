@@ -9,6 +9,7 @@ interface Props {
     }
 }
 
+export const revalidate = 0
 
 export default async function ProductSlugPage({params}:Props) {
 
@@ -16,7 +17,7 @@ export default async function ProductSlugPage({params}:Props) {
     const product = await getProductByslug(slug)
     const categories = await getCategories();
 
-    if (!product) {
+    if (!product && slug !== 'new') {
         redirect('/admin/products')
     }
 
@@ -25,7 +26,7 @@ export default async function ProductSlugPage({params}:Props) {
   return (
     <div className="px-0 sm:px-4">
       <Title title={title}/>
-      <ProductForm product={product} categories={categories}/>
+      <ProductForm product={product ?? {}} categories={categories}/>
     </div>
   );
 }

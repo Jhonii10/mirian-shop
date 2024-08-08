@@ -1,6 +1,7 @@
 'use client';
 
 import { changeUserRole } from '@/actions';
+import { ProductImage } from '@/components';
 import { Product, User } from '@/interfaces'
 import { currencyFormat } from '@/utils';
 import Image from 'next/image';
@@ -55,8 +56,8 @@ export const ProductsTable = ({products}:Props) => {
 
                 <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
                 <Link href={`/admin/products/${product.slug}`}>
-                  <Image
-                    src={`/products/${product.images[0]}`}
+                  <ProductImage 
+                    src={product.images[0]}
                     alt={product.title}
                     width={80}
                     height={80}

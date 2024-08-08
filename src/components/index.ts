@@ -14,3 +14,5 @@ export * from './ui/not-found/PageNotFound'
 export * from './ui/title/Title'
 
 export {PayPalButton} from './paypal/PaypalButton'
+
+export {ProductImage} from './product/image/ProductImage'
