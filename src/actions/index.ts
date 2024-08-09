@@ -15,5 +15,6 @@ export {getAllUsers} from './users/getAllUsers'
 export {changeUserRole} from './users/changeUserRole'
 export {getCategories} from './categories/getCategories'
 export {createUpdateProduct} from './products/createUpdateProduct'
+export {deleteProductImage} from './products/deleteProductImage'
 
 export * from './auth/actions'
