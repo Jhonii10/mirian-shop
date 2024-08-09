@@ -26,6 +26,7 @@ export const ProductImage = ({src,alt,width,height,className }:Props) => {
         width={width}
         height={height}
         className={className}
+        title={alt}
     />
   )
 }
