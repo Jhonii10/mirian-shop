@@ -12,6 +12,13 @@ interface Props {
 export const ProductItem = ({product}:Props) => {
 
     const [displayImage, setDisplayImage] = useState(product.images[0]);
+
+    const localSrc = (displayImage)
+    ? displayImage.startsWith('http')
+        ? displayImage
+        : `/products/${displayImage}`
+    : '/imgs/placeholder.jpg'
+    
     
   return (
     <div className='rounded-md overflow-hidden fade-in '>
@@ -19,7 +26,7 @@ export const ProductItem = ({product}:Props) => {
              href={`/product/${product.slug}`}
         >
         <Image
-            src={`/products/${displayImage}`}
+            src={localSrc}
             alt={product.title}
             width={500}
             height={500}
