@@ -1,7 +1,7 @@
 'use client'
 
+import { ProductImage as Image } from '@/components'
 import { useCartStore } from '@/store'
-import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
@@ -31,11 +31,10 @@ export const ProductsInCart = () => {
                 <div key={`${product.slug} + ${product.size}`} className="flex gap-1 border rounded-lg p-2">
                     
                     <Image
-                      src={`/products/${product.image}`}
+                      src={product.image}
                       alt={product.title}
                       width={80}
                       height={80}
-                      title={product.title}
                       className=" mr-2 rounded-md object-cover"
                     />
                     

@@ -9,6 +9,10 @@ import { Toaster } from "react-hot-toast";
 export const metadata: Metadata = {
   title: "Mirian | Shop ",
   description: "tienda virtual de miriam",
+  manifest:"/manifest.json",
+  icons:{
+    apple:"/icon.png",
+  },
 };
 
 export default function RootLayout({
