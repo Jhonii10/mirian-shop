@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { quicksand } from "@/font";
 import { Providers } from "@/components";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -20,6 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={quicksand.className}>
+      <Toaster
+      position="bottom-right"
+      reverseOrder={false}
+      />
         <Providers>
           {children}
         </Providers>

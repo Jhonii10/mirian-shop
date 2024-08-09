@@ -7,10 +7,12 @@ import bcryptjs from 'bcryptjs';
 
  
 export const authConfig = {
+  trustHost:true,
   pages: {
     signIn: '/auth/login',
     newUser: '/auth/new-account',
   },
+  
 
   callbacks:{
     authorized({ auth, request: { nextUrl } }) {
@@ -46,6 +48,8 @@ export const authConfig = {
         return session;
     },
   },
+
+
   
   providers: [
     Credentials({

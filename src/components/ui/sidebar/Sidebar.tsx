@@ -5,7 +5,7 @@ import { useUiStore } from '@/store'
 import clsx from 'clsx'
 import { Session } from 'next-auth'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from 'react-icons/io5'
 
 export const Sidebar =  ({session}:{session:Session | null}) => {
@@ -15,18 +15,27 @@ export const Sidebar =  ({session}:{session:Session | null}) => {
   const isAuthenticated = !!session?.user;
   const isAdmin = session?.user.role === 'admin' ? true : false;
 
+  useEffect(() => {
+    if (isSideMenuOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [isSideMenuOpen]);
 
 
 
   
   return (
-    <>
+    <> 
+        
        {
         isSideMenuOpen && 
         <>
+             
        
             <div
-                className='fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30'
+                className='fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30 '
                 
             />
             <div
@@ -41,6 +50,7 @@ export const Sidebar =  ({session}:{session:Session | null}) => {
                     "fixed p-5 right-0 top-0  w-full sm:w-[400px] h-screen bg-white z-20 shadow-2xl transform transition-all duration-500",
                     {
                         "translate-x-full": !isSideMenuOpen,
+                        "overflow-scroll":isSideMenuOpen
                     }
                     )
                 }
