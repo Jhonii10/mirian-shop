@@ -4,7 +4,6 @@
 import { signIn, signOut } from '@/auth.config';
 import { prisma } from '@/lib/prisma';
 import bcryptjs from 'bcryptjs';
-import { redirect } from 'next/navigation';
 
 export async function authenticate(
 prevState: string | undefined,

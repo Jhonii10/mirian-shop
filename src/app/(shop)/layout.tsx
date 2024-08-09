@@ -12,10 +12,6 @@ export default async function ShopLayout({
 
   return (
     <main className="min-h-screen ">
-      <Toaster
-      position="bottom-right"
-      reverseOrder={false}
-      />
       <TopMenu/>
       <Sidebar session={session}/>
       <div className="px-4">

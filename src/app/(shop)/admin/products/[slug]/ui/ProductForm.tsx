@@ -93,7 +93,7 @@ export const ProductForm = ({ product , categories }: Props) => {
     setValue('images', undefined);
 
     setTimeout(() => {
-        toast.success("operacion exitosa")
+        toast.success("producto guardado")
     }, 250);
  
 

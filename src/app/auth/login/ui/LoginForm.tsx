@@ -2,11 +2,12 @@
 
 import { authenticate } from '@/actions/auth/actions';
 import Link from 'next/link'
-import React, { useActionState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { IoInformationOutline } from 'react-icons/io5';
 import { useFormState, useFormStatus } from 'react-dom';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 export const LoginForm = () => {
 
@@ -19,9 +20,13 @@ export const LoginForm = () => {
 
     useEffect(() => {
         if (state === 'Success') {
-            router.replace('/')
+        
+            toast.success('inicio de session exitoso')
+            router.replace('/');
         }
-    }, [state]);
+    }, [state , router]);
+    
+
     
 
   return (

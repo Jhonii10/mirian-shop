@@ -33,9 +33,7 @@ export const AddressForm =({countries , userStoreAddress = {}}: Props) => {
     const router = useRouter();
 
 
-    const session = useSession({
-        required: true
-    });
+    const session = useSession();
   
 
     const {handleSubmit , register, formState:{isValid}, reset} = useForm<FormInputs>({
