@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image';
 import { useState } from 'react';
 
 // Import Swiper React components
@@ -12,6 +11,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/pagination';
+import { ProductImage as Image} from '../image/ProductImage';
 
 interface Props {
     images:string[];
@@ -49,7 +49,7 @@ export const ProductSlideshow = ({images,title,className}:Props) => {
         images.map((image)=>(
             <SwiperSlide key={image} style={{borderRadius:'0.5rem'}}>
                 <Image
-                    src={`/products/${image}`}
+                    src={image}
                     alt={title}
                     width={1000}
                     height={1000}
@@ -75,7 +75,7 @@ export const ProductSlideshow = ({images,title,className}:Props) => {
         images.map((image)=>(
             <SwiperSlide key={image} style={{borderRadius:'0.5rem'}}>
                 <Image
-                    src={`/products/${image}`}
+                    src={image}
                     alt={title}
                     width={500}
                     height={500}
