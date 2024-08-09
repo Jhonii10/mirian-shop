@@ -1,6 +1,6 @@
 "use client";
 
-import { createUpdateProduct } from "@/actions";
+import { createUpdateProduct, deleteProductImage } from "@/actions";
 import { ProductImage as Image } from "@/components";
 import { Category, Product, ProductImage } from "@/interfaces";
 import clsx from "clsx";
@@ -88,7 +88,9 @@ export const ProductForm = ({ product , categories }: Props) => {
         return
     }
 
-     router.replace(`/admin/products/${updatedProduct?.slug}`)
+    router.replace(`/admin/products/${updatedProduct?.slug}`)
+
+    setValue('images', undefined);
 
     setTimeout(() => {
         toast.success("operacion exitosa")
@@ -249,8 +251,9 @@ export const ProductForm = ({ product , categories }: Props) => {
                         />
 
                         <button
+                            type="button"
                             className="btn-danger w-full rounded-b-xl"
-                            onClick={() => console.log(image.id)}
+                            onClick={() => deleteProductImage(image.id , image.url)}
                         >
                             Eliminar
                         </button>
