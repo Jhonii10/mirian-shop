@@ -1,8 +1,7 @@
 import { getOrderById } from "@/actions";
-import { PayPalButton, Title } from "@/components";;
+import { PayPalButton, ProductImage as Image, Title } from "@/components";;
 import { currencyFormat } from "@/utils";
 import clsx from "clsx";
-import Image from "next/image";
 import { redirect } from "next/navigation";
 import { IoCardOutline } from "react-icons/io5";
 
@@ -58,11 +57,10 @@ export default async function OrderIdPage({params}:Props) {
             order?.OrderItem?.map((item, index) => (
               <div key={ item.product.slug +'-'+item.size + index} className="flex gap-1 border rounded-lg p-2">
                   <Image
-                    src={`/products/${item.product.productImage[0].url}`}
+                    src={item.product.productImage[0].url}
                     alt={item.product.title}
                     width={80}
                     height={80}
-                    title={item.product.title}
                     className=" mr-2 rounded-md object-cover"
                   />
                   
