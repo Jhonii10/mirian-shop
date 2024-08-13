@@ -4,3 +4,18 @@
 <h1 align="center">Mirian | shop</h1>
 
 
+![demo](https://www.jhoniipia.com/assets/images/featured/mirian-shop.png)
+
+## Tecnologías Utilizadas
+
+**Client:** Next.js & zustand, Tailwinds, Swiper, entre otras librerias
+
+**Server:** Next.js
+
+**Base de datos:** Postgres
+
+## Liciencia
+
+Licencia de Software para mirian shop.
+
+Copyright © 2024. Todos los derechos reservados.
