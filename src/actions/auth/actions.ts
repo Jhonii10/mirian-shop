@@ -31,6 +31,7 @@ export async function login(email:string , password:string) {
         await signIn('credentials',{
             email: email,
             password: password,
+            redirect:false
         })
 
         return {
