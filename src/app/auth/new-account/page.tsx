@@ -19,8 +19,7 @@ export default function NewAccountPage() {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<Inputs>()
 
   const [errorMessage, setErrorMessage] = useState<string | null | undefined>(null);
@@ -86,8 +85,14 @@ export default function NewAccountPage() {
 
       <button
         type="submit"
-        className="btn-primary">
-        Crear cuenta
+        className={clsx({
+          "btn-primary":!isSubmitting,
+          "btn-disabled":isSubmitting
+        })}
+        disabled={isSubmitting}
+        >
+
+        {isSubmitting ? 'Creando...' : 'Crear cuenta'}
       </button>
 
 
