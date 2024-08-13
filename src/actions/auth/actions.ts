@@ -34,7 +34,6 @@ export async function login(email:string , password:string) {
         })
 
         return {
-            status: 200,
             ok:true
         }
     } catch (error) {

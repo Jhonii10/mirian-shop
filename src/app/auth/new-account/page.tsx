@@ -3,9 +3,10 @@ import { login, registerUser } from "@/actions";
 import { quicksand } from "@/font";
 import clsx from "clsx";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 type Inputs = {
   name: string;
@@ -35,10 +36,12 @@ export default function NewAccountPage() {
         return;
      }
 
-     await login(email,password);
-     
-     router.push('/')
-     
+      await login(email,password);
+
+    
+      toast.success('inicio de session exitoso')
+      router.push('/')
+   
   }
 
   return (
